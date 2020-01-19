@@ -1,7 +1,23 @@
 import React, { Component } from "react";
 
+// Grommet
+import {
+  Main,
+  Box,
+  Grid,
+  FormField,
+  TextInput,
+  TextArea,
+  Button
+} from "grommet";
+
 class CreatePlanForm extends Component {
-  state = {};
+  state = {
+    name: "",
+    location: "",
+    datetime: "",
+    activity: ""
+  };
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -9,26 +25,111 @@ class CreatePlanForm extends Component {
     console.log(this.state);
   };
   render() {
+    // columns, rows and areas are for Grid with a known number of contents / boxes.
+
+    // If the size is small, we only see 1 column
+    // If the size is medium, we only see 2 columns
+    // If the size is either large or xlarge, we see 4 columns
+    const columns = {
+      small: ["auto"],
+      medium: ["auto", "auto"],
+      large: ["auto", "auto", "auto", "auto"],
+      xlarge: ["auto", "auto", "auto", "auto"]
+    };
+
+    // If the size is small, we have 5 rows
+    // If the size is medium, large, or xlarge we have 4 rows
+    const rows = {
+      small: ["xsmall", "xsmall", "xsmall", "xsmall", "xsmall"],
+      medium: ["xsmall", "xsmall", "xsmall", "xsmall"],
+      large: ["xsmall", "xsmall", "xsmall", "xsmall"],
+      xlarge: ["xsmall", "xsmall", "xsmall", "xsmall"]
+    };
+    // Set the different areas you need for every size
+    const fixedGridAreas = {
+      small: [
+        { name: "name", start: [0, 0], end: [0, 0] },
+        { name: "location", start: [0, 1], end: [0, 1] },
+        { name: "datetime", start: [0, 2], end: [0, 2] },
+        { name: "activity", start: [0, 3], end: [0, 3] },
+        { name: "createButton", start: [0, 4], end: [0, 4] }
+      ],
+      medium: [
+        { name: "name", start: [0, 0], end: [1, 0] },
+        { name: "location", start: [0, 1], end: [0, 1] },
+        { name: "datetime", start: [1, 1], end: [1, 1] },
+        { name: "activity", start: [0, 2], end: [1, 2] },
+        { name: "createButton", start: [0, 3], end: [1, 3] }
+      ],
+      large: [
+        { name: "name", start: [1, 0], end: [2, 0] },
+        { name: "location", start: [0, 1], end: [1, 1] },
+        { name: "datetime", start: [2, 1], end: [3, 1] },
+        { name: "activity", start: [0, 2], end: [3, 2] },
+        { name: "createButton", start: [1, 3], end: [2, 3] }
+      ],
+      xlarge: [
+        { name: "name", start: [1, 0], end: [2, 0] },
+        { name: "location", start: [0, 1], end: [1, 1] },
+        { name: "datetime", start: [2, 1], end: [3, 1] },
+        { name: "activity", start: [0, 2], end: [3, 2] },
+        { name: "createButton", start: [1, 3], end: [2, 3] }
+      ]
+    };
     return (
-      <>
-        <label>
-          Name:
-          <input type="text" name="name" onChange={this.handleChange} />
-        </label>
-        <label>
-          Location:
-          <input type="text" name="location" onChange={this.handleChange} />
-        </label>
-        <label>
-          Date & Time:
-          <input type="text" name="datetime" onChange={this.handleChange} />
-        </label>
-        <label>
-          Activity:
-          <textarea type="text" name="activity" onChange={this.handleChange} />
-        </label>
-        <button onClick={this.create}>Create</button>
-      </>
+      <Main pad="large" align="center">
+        <Grid
+          rows={rows[this.props.size]}
+          columns={columns[this.props.size]}
+          gap="small"
+          areas={fixedGridAreas[this.props.size]}
+          margin="medium"
+        >
+          <Box gridArea="name">
+            <FormField label="Your Name">
+              <TextInput
+                placeholder="type here"
+                onChange={this.handleChange}
+                name="name"
+                value={this.state.name}
+              />
+            </FormField>
+          </Box>
+          <Box gridArea="location">
+            <FormField label="Location">
+              <TextInput
+                placeholder="type here"
+                onChange={this.handleChange}
+                name="location"
+                value={this.state.location}
+              />
+            </FormField>
+          </Box>
+          <Box gridArea="datetime">
+            <FormField label="Date & Time">
+              <TextInput
+                placeholder="type here"
+                onChange={this.handleChange}
+                name="datetime"
+                value={this.state.datetime}
+              />
+            </FormField>
+          </Box>
+          <Box gridArea="activity">
+            <FormField label="Activity">
+              <TextArea
+                placeholder="type here"
+                onChange={this.handleChange}
+                name="activity"
+                value={this.state.activity}
+              />
+            </FormField>
+          </Box>
+          <Box gridArea="createButton">
+            <Button label="Create" onClick={this.create} color="neutral-2" />
+          </Box>
+        </Grid>
+      </Main>
     );
   }
 }

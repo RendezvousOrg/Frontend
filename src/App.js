@@ -1,12 +1,19 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+
+// Grommet
+import { Grommet } from "grommet";
+
+// Components
+import { ResponsiveContext } from "grommet";
 import CreatePlanForm from "./Components/CreatePlanForm";
+
 function App() {
   return (
-    <div className="App">
-      <CreatePlanForm />
-    </div>
+    <Grommet full>
+      <ResponsiveContext.Consumer>
+        {size => <CreatePlanForm size={size} />}
+      </ResponsiveContext.Consumer>
+    </Grommet>
   );
 }
 
