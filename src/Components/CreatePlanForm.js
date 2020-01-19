@@ -11,9 +11,12 @@ import {
   Button
 } from "grommet";
 
+// Axios
+import axios from "axios";
+
 class CreatePlanForm extends Component {
   state = {
-    name: "",
+    creator: "",
     location: "",
     datetime: "",
     activity: ""
@@ -21,8 +24,16 @@ class CreatePlanForm extends Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  create = () => {
-    console.log(this.state);
+  create = async () => {
+    try {
+      let response = await axios.post(
+        "http://127.0.0.1:8000/plans/",
+        this.state
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
   render() {
     // columns, rows and areas are for Grid with a known number of contents / boxes.
@@ -90,7 +101,7 @@ class CreatePlanForm extends Component {
               <TextInput
                 placeholder="type here"
                 onChange={this.handleChange}
-                name="name"
+                name="creator"
                 value={this.state.name}
               />
             </FormField>
