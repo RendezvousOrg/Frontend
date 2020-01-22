@@ -34,6 +34,13 @@ function App() {
       </Switch>
     </Grommet>
   );
+  // return (
+  //   <Grommet full>
+  //     <ResponsiveContext.Consumer>
+  //       {size => <CreatePlanForm size={size} />}
+  //     </ResponsiveContext.Consumer>
+  //   </Grommet>
+  // );
 }
 
 export default App;
