@@ -8,11 +8,11 @@ import {
   FormField,
   TextInput,
   Heading,
-  Button
+  Button,
+  Form
 } from "grommet";
 
-// Axios
-import axios from "axios";
+import authStore from "../../stores/authStore";
 
 class RegisterForm extends Component {
   state = {
@@ -22,16 +22,9 @@ class RegisterForm extends Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  register = async () => {
-    try {
-      let response = await axios.post(
-        "http://127.0.0.1:8000/register/",
-        this.state
-      );
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
+  handleSubmit = event => {
+    event.preventDefault();
+    authStore.register(this.state);
   };
   render() {
     const columns = ["auto"];
@@ -44,45 +37,43 @@ class RegisterForm extends Component {
     ];
     return (
       <Main pad="large" align="center">
-        <Grid
-          rows={rows}
-          columns={columns}
-          gap="small"
-          areas={areas}
-          margin="medium"
-        >
-          <Box gridArea="heading">
-            <Heading level={1}>Register here</Heading>
-          </Box>
-          <Box gridArea="username">
-            <FormField label="Username">
-              <TextInput
-                placeholder="type here"
-                onChange={this.handleChange}
-                name="username"
-                value={this.state.username}
-              />
-            </FormField>
-          </Box>
-          <Box gridArea="password">
-            <FormField label="Password">
-              <TextInput
-                placeholder="type here"
-                onChange={this.handleChange}
-                name="password"
-                value={this.state.password}
-                type="password"
-              />
-            </FormField>
-          </Box>
-          <Box gridArea="button">
-            <Button
-              label="Register"
-              onClick={this.register}
-              color="neutral-2"
-            />
-          </Box>
-        </Grid>
+        <Form onSubmit={this.handleSubmit}>
+          <Grid
+            rows={rows}
+            columns={columns}
+            gap="small"
+            areas={areas}
+            margin="medium"
+          >
+            <Box gridArea="heading">
+              <Heading level={1}>Register here</Heading>
+            </Box>
+            <Box gridArea="username">
+              <FormField label="Username">
+                <TextInput
+                  placeholder="type here"
+                  onChange={this.handleChange}
+                  name="username"
+                  value={this.state.username}
+                />
+              </FormField>
+            </Box>
+            <Box gridArea="password">
+              <FormField label="Password">
+                <TextInput
+                  placeholder="type here"
+                  onChange={this.handleChange}
+                  name="password"
+                  value={this.state.password}
+                  type="password"
+                />
+              </FormField>
+            </Box>
+            <Box gridArea="button">
+              <Button label="Register" color="neutral-2" type="submit" />
+            </Box>
+          </Grid>
+        </Form>
       </Main>
     );
   }
