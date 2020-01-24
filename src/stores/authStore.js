@@ -10,7 +10,7 @@ class AuthStore {
   setUser = token => {
     if (token) {
       localStorage.setItem("myToken", token);
-      axios.defaults.headers.common.Authorization = `jwt ${token}`;
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
       const decodedUser = jwt_decode(token);
       this.user = decodedUser;
     } else {
