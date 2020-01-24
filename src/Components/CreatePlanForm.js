@@ -16,7 +16,6 @@ import axios from "axios";
 
 class CreatePlanForm extends Component {
   state = {
-    creator: "",
     location: "",
     datetime: "",
     activity: ""
@@ -51,40 +50,36 @@ class CreatePlanForm extends Component {
     // If the size is small, we have 5 rows
     // If the size is medium, large, or xlarge we have 4 rows
     const rows = {
-      small: ["xsmall", "xsmall", "xsmall", "xsmall", "xsmall"],
-      medium: ["xsmall", "xsmall", "xsmall", "xsmall"],
-      large: ["xsmall", "xsmall", "xsmall", "xsmall"],
-      xlarge: ["xsmall", "xsmall", "xsmall", "xsmall"]
+      small: ["xsmall", "xsmall", "xsmall", "xsmall"],
+      medium: ["xsmall", "xsmall", "xsmall"],
+      large: ["xsmall", "xsmall", "xsmall"],
+      xlarge: ["xsmall", "xsmall", "xsmall"]
     };
     // Set the different areas you need for every size
     const fixedGridAreas = {
       small: [
-        { name: "name", start: [0, 0], end: [0, 0] },
-        { name: "location", start: [0, 1], end: [0, 1] },
-        { name: "datetime", start: [0, 2], end: [0, 2] },
-        { name: "activity", start: [0, 3], end: [0, 3] },
-        { name: "createButton", start: [0, 4], end: [0, 4] }
+        { name: "location", start: [0, 0], end: [0, 0] },
+        { name: "datetime", start: [0, 1], end: [0, 1] },
+        { name: "activity", start: [0, 2], end: [0, 2] },
+        { name: "createButton", start: [0, 3], end: [0, 3] }
       ],
       medium: [
-        { name: "name", start: [0, 0], end: [1, 0] },
-        { name: "location", start: [0, 1], end: [0, 1] },
-        { name: "datetime", start: [1, 1], end: [1, 1] },
-        { name: "activity", start: [0, 2], end: [1, 2] },
-        { name: "createButton", start: [0, 3], end: [1, 3] }
+        { name: "location", start: [0, 0], end: [0, 0] },
+        { name: "datetime", start: [1, 0], end: [1, 0] },
+        { name: "activity", start: [0, 1], end: [1, 1] },
+        { name: "createButton", start: [0, 2], end: [1, 2] }
       ],
       large: [
-        { name: "name", start: [1, 0], end: [2, 0] },
-        { name: "location", start: [0, 1], end: [1, 1] },
-        { name: "datetime", start: [2, 1], end: [3, 1] },
-        { name: "activity", start: [0, 2], end: [3, 2] },
-        { name: "createButton", start: [1, 3], end: [2, 3] }
+        { name: "location", start: [0, 0], end: [1, 0] },
+        { name: "datetime", start: [2, 0], end: [3, 0] },
+        { name: "activity", start: [0, 1], end: [3, 1] },
+        { name: "createButton", start: [1, 2], end: [2, 2] }
       ],
       xlarge: [
-        { name: "name", start: [1, 0], end: [2, 0] },
-        { name: "location", start: [0, 1], end: [1, 1] },
-        { name: "datetime", start: [2, 1], end: [3, 1] },
-        { name: "activity", start: [0, 2], end: [3, 2] },
-        { name: "createButton", start: [1, 3], end: [2, 3] }
+        { name: "location", start: [0, 0], end: [1, 0] },
+        { name: "datetime", start: [2, 0], end: [3, 0] },
+        { name: "activity", start: [0, 1], end: [3, 1] },
+        { name: "createButton", start: [1, 2], end: [2, 2] }
       ]
     };
     return (
@@ -96,16 +91,6 @@ class CreatePlanForm extends Component {
           areas={fixedGridAreas[this.props.size]}
           margin="medium"
         >
-          <Box gridArea="name">
-            <FormField label="Your Name">
-              <TextInput
-                placeholder="type here"
-                onChange={this.handleChange}
-                name="creator"
-                value={this.state.name}
-              />
-            </FormField>
-          </Box>
           <Box gridArea="location">
             <FormField label="Location">
               <TextInput
