@@ -7,6 +7,7 @@ import { Grommet, ResponsiveContext } from "grommet";
 // Components
 import Accounts from "./components/accounts";
 import CreatePlanForm from "./components/CreatePlanForm";
+import PlanList from "./components/PlanList";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             </ResponsiveContext.Consumer>
           )}
         />
+        <Route path="/plans" component={PlanList} />
         <Route
           path="/plans/create"
           render={props => (
