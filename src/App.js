@@ -8,6 +8,7 @@ import { Grommet, ResponsiveContext } from "grommet";
 import Accounts from "./components/accounts";
 import CreatePlanForm from "./components/CreatePlanForm";
 import PlanList from "./components/PlanList";
+import Plan from "./components/Plan";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             </ResponsiveContext.Consumer>
           )}
         />
+        <Route path="/plans/:planID" component={Plan} />
         <Route path="/plans" component={PlanList} />
         <Route
           path="/plans/create"
@@ -34,13 +36,6 @@ function App() {
       </Switch>
     </Grommet>
   );
-  // return (
-  //   <Grommet full>
-  //     <ResponsiveContext.Consumer>
-  //       {size => <CreatePlanForm size={size} />}
-  //     </ResponsiveContext.Consumer>
-  //   </Grommet>
-  // );
 }
 
 export default App;

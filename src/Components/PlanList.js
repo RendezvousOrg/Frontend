@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // Grommet
 import { Main, Heading } from "grommet";
 
+// Stores
 import planStore from "../stores/planStore";
 
 class PlanList extends Component {
