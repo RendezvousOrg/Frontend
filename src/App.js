@@ -1,25 +1,37 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 
 // Grommet
 import { Grommet, ResponsiveContext } from "grommet";
 
 // Components
 import Accounts from "./components/accounts";
+import CreatePlanForm from "./components/CreatePlanForm";
+
 function App() {
   return (
     <Grommet full>
-      <ResponsiveContext.Consumer>
-        {size => <Accounts size={size} />}
-      </ResponsiveContext.Consumer>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <ResponsiveContext.Consumer>
+              {size => <Accounts {...props} size={size} />}
+            </ResponsiveContext.Consumer>
+          )}
+        />
+        <Route
+          path="/plans/create"
+          render={props => (
+            <ResponsiveContext.Consumer>
+              {size => <CreatePlanForm {...props} size={size} />}
+            </ResponsiveContext.Consumer>
+          )}
+        />
+      </Switch>
     </Grommet>
   );
-  // return (
-  //   <Grommet full>
-  //     <ResponsiveContext.Consumer>
-  //       {size => <CreatePlanForm size={size} />}
-  //     </ResponsiveContext.Consumer>
-  //   </Grommet>
-  // );
 }
 
 export default App;
