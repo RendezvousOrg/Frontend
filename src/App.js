@@ -4,7 +4,7 @@ import React from "react";
 import { Grommet, ResponsiveContext } from "grommet";
 
 // Components
-import Accounts from "./Components/Accounts";
+import Accounts from "./components/accounts";
 function App() {
   return (
     <Grommet full>
