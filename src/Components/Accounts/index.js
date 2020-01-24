@@ -37,10 +37,10 @@ class Accounts extends Component {
           margin="medium"
         >
           <Box gridArea="registerform">
-            <RegisterForm />
+            <RegisterForm history={this.props.history} />
           </Box>
           <Box gridArea="loginform">
-            <LoginForm />
+            <LoginForm history={this.props.history} />
           </Box>
         </Grid>
       </Main>

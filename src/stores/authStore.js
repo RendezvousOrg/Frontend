@@ -20,21 +20,23 @@ class AuthStore {
     }
   };
 
-  login = async userData => {
+  login = async (userData, history) => {
     try {
       const res = await axios.post("http://127.0.0.1:8000/login/", userData);
       const user = res.data;
       this.setUser(user.access);
       console.log(user.access);
+      history.replace("/plans/create");
     } catch (err) {
       console.error(err.response.data);
     }
   };
 
-  register = async userData => {
+  register = async (userData, history) => {
     try {
       const res = await axios.post("http://127.0.0.1:8000/register/", userData);
       this.user = res.data;
+      history.replace("/plans/create");
     } catch (err) {
       console.error(err.response.data);
     }

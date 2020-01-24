@@ -24,7 +24,7 @@ class RegisterForm extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    authStore.register(this.state);
+    authStore.register(this.state, this.props.history);
   };
   render() {
     const columns = ["auto"];
