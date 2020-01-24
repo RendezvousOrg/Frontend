@@ -8,11 +8,14 @@ import {
   FormField,
   TextInput,
   Heading,
-  Button
+  Button,
+  Form
 } from "grommet";
 
 // Axios
 import axios from "axios";
+
+import authStore from "../../stores/authStore";
 
 class LoginForm extends Component {
   state = {
@@ -22,16 +25,9 @@ class LoginForm extends Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  login = async () => {
-    try {
-      let response = await axios.post(
-        "http://127.0.0.1:8000/login/",
-        this.state
-      );
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
+  handleSubmit = event => {
+    event.preventDefault();
+    authStore.login(this.state);
   };
   render() {
     const columns = ["auto"];
@@ -44,41 +40,43 @@ class LoginForm extends Component {
     ];
     return (
       <Main pad="large" align="center">
-        <Grid
-          rows={rows}
-          columns={columns}
-          gap="small"
-          areas={areas}
-          margin="medium"
-        >
-          <Box gridArea="heading">
-            <Heading level={1}>Login here</Heading>
-          </Box>
-          <Box gridArea="username">
-            <FormField label="Username">
-              <TextInput
-                placeholder="type here"
-                onChange={this.handleChange}
-                name="username"
-                value={this.state.username}
-              />
-            </FormField>
-          </Box>
-          <Box gridArea="password">
-            <FormField label="Password">
-              <TextInput
-                placeholder="type here"
-                onChange={this.handleChange}
-                name="password"
-                value={this.state.password}
-                type="password"
-              />
-            </FormField>
-          </Box>
-          <Box gridArea="button">
-            <Button label="Login" onClick={this.login} color="neutral-2" />
-          </Box>
-        </Grid>
+        <Form onSubmit={this.handleSubmit}>
+          <Grid
+            rows={rows}
+            columns={columns}
+            gap="small"
+            areas={areas}
+            margin="medium"
+          >
+            <Box gridArea="heading">
+              <Heading level={1}>Login here</Heading>
+            </Box>
+            <Box gridArea="username">
+              <FormField label="Username">
+                <TextInput
+                  placeholder="type here"
+                  onChange={this.handleChange}
+                  name="username"
+                  value={this.state.username}
+                />
+              </FormField>
+            </Box>
+            <Box gridArea="password">
+              <FormField label="Password">
+                <TextInput
+                  placeholder="type here"
+                  onChange={this.handleChange}
+                  name="password"
+                  value={this.state.password}
+                  type="password"
+                />
+              </FormField>
+            </Box>
+            <Box gridArea="button">
+              <Button label="Login" type="submit" color="neutral-2" />
+            </Box>
+          </Grid>
+        </Form>
       </Main>
     );
   }
