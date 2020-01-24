@@ -12,9 +12,6 @@ import {
   Form
 } from "grommet";
 
-// Axios
-import axios from "axios";
-
 import authStore from "../../stores/authStore";
 
 class LoginForm extends Component {
