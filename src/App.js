@@ -9,6 +9,7 @@ import Accounts from "./components/accounts";
 import CreatePlanForm from "./components/CreatePlanForm";
 import PlanList from "./components/PlanList";
 import Plan from "./components/Plan";
+import JoinPlan from "./components/JoinPlan";
 
 function App() {
   return (
@@ -32,8 +33,8 @@ function App() {
           )}
         />
         <Route exact path="/plans" component={PlanList} />
+        <Route exact path="/plans/join" component={JoinPlan} />
         <Route path="/plans/:planID" component={Plan} />
-        <Route exact path="/plans/join" component={Plan} />
       </Switch>
     </Grommet>
   );
