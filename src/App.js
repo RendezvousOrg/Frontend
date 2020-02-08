@@ -23,8 +23,6 @@ function App() {
             </ResponsiveContext.Consumer>
           )}
         />
-        <Route path="/plans/:planID" component={Plan} />
-        <Route path="/plans" component={PlanList} />
         <Route
           path="/plans/create"
           render={props => (
@@ -33,6 +31,8 @@ function App() {
             </ResponsiveContext.Consumer>
           )}
         />
+        <Route exact path="/plans" component={PlanList} />
+        <Route path="/plans/:planID" component={Plan} />
       </Switch>
     </Grommet>
   );
