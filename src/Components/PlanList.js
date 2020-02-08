@@ -8,6 +8,9 @@ import { Main, Heading } from "grommet";
 // Stores
 import planStore from "../stores/planStore";
 
+// Components
+import FindPlan from "./FindPlan";
+
 class PlanList extends Component {
   render() {
     const plans = planStore.plans.map(plan => (
@@ -20,6 +23,7 @@ class PlanList extends Component {
 
     return (
       <Main pad="large" align="center">
+        <FindPlan />
         {plans}
       </Main>
     );
