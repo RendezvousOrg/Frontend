@@ -1,28 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { useParams } from "react-router-dom";
 
 // Grommet
-import {
-  Main,
-  Box,
-  Grid,
-  FormField,
-  TextInput,
-  TextArea,
-  Button,
-  List,
-  Heading,
-  Text,
-  Paragraph
-} from "grommet";
+import { Main, Box, Grid, List, Heading, Paragraph } from "grommet";
 
 // Stores
 import planStore from "../stores/planStore";
 
 export default function Plan() {
   const { planID } = useParams();
-  const plan = planStore.plans.find(plan => plan.id == planID);
+  const plan = planStore.plans.find(plan => plan.id === planID);
   const columns = ["auto"];
   const rows = ["auto", "auto", "auto", "auto", "auto"];
   const areas = [
