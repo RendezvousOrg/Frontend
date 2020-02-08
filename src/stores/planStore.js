@@ -26,10 +26,17 @@ class PlanStore {
     return this.plans.find(plan => +plan.id === +id);
   };
 
-  findPlan = id => {
+  findPlan = async (id, history) => {
     const res = await axios.get(`http://127.0.0.1:8000/api/plans/${id}/`);
     this.planToJoin = res.data;
     history.replace("/plans/join");
+  };
+
+  join = async (planID, history) => {
+    await axios.post(`http://127.0.0.1:8000/api/plans/join/`, {
+      plan: planID
+    });
+    history.replace(`/plans/${planID}`);
   };
 }
 

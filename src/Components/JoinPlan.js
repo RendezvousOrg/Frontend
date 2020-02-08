@@ -21,10 +21,7 @@ export default function Plan() {
     { name: "join", start: [0, 4], end: [0, 4] }
   ];
   const join = async () => {
-    const res = await axios.post(`http://127.0.0.1:8000/api/plans/join/`, {
-      plan: planID
-    });
-    history.replace(`/plans/${planID}`);
+    planStore.join(planID);
   };
   return (
     <Main pad="large" align="center">
