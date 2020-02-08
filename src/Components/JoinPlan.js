@@ -9,8 +9,7 @@ import { Main, Box, Grid, List, Heading, Paragraph, Button } from "grommet";
 import planStore from "../stores/planStore";
 
 export default function Plan() {
-  const { planID } = useParams();
-  const plan = planStore.plans.find(plan => plan.id === planID);
+  const plan = planStore.planToJoin;
   const columns = ["auto"];
   const rows = ["auto", "auto", "auto", "auto", "auto"];
   const areas = [
@@ -21,7 +20,7 @@ export default function Plan() {
     { name: "join", start: [0, 4], end: [0, 4] }
   ];
   const join = async () => {
-    planStore.join(planID);
+    planStore.join(plan.id);
   };
   return (
     <Main pad="large" align="center">
