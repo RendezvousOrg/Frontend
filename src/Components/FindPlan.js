@@ -16,7 +16,7 @@ class PlanList extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    planStore.findPlan(this.state.planID);
+    planStore.findPlan(this.state.planID, this.props.history);
   };
   render() {
     return (

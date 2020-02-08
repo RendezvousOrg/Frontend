@@ -23,7 +23,7 @@ class PlanList extends Component {
 
     return (
       <Main pad="large" align="center">
-        <FindPlan />
+        <FindPlan history={this.props.history} />
         {plans}
       </Main>
     );
