@@ -25,6 +25,12 @@ class PlanStore {
   getPlanById = id => {
     return this.plans.find(plan => +plan.id === +id);
   };
+
+  findPlan = id => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/plans/${id}/`);
+    this.planToJoin = res.data;
+    history.replace("/plans/join");
+  };
 }
 
 decorate(PlanStore, {

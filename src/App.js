@@ -33,6 +33,7 @@ function App() {
         />
         <Route exact path="/plans" component={PlanList} />
         <Route path="/plans/:planID" component={Plan} />
+        <Route exact path="/plans/join" component={Plan} />
       </Switch>
     </Grommet>
   );
