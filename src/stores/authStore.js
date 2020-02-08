@@ -37,7 +37,7 @@ class AuthStore {
 
   register = async (userData, history) => {
     try {
-      const res = await axios.post("http://127.0.0.1:8000/register/", userData);
+      await axios.post("http://127.0.0.1:8000/register/", userData);
       this.login(userData, history);
     } catch (err) {
       console.error(err.response.data);
